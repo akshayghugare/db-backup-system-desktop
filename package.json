@@ -15,7 +15,7 @@
     "release": "node scripts/build-app.js && electron-builder --win --publish always"
   },
   "devDependencies": {
-    "electron": "^45.5.0",
+    "electron": "45.5.0",
     "electron-builder": "^26.18.0"
   },
   "author": "DB Backup & Restore",
@@ -86,6 +86,7 @@
         "repo": "db-backup-system-desktop",
         "releaseType": "release"
       }
-    ]
+    ],
+    "electronVersion": "45.5.0"
   }
 }
