@@ -1,0 +1,91 @@
+{
+  "name": "db-backup-desktop",
+  "productName": "DB Backup & Restore",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Desktop app for Database Backup & Restore — runs the backend on your own computer so restores into localhost work.",
+  "main": "main/main.js",
+  "scripts": {
+    "build:app": "node scripts/build-app.js",
+    "start": "node scripts/build-app.js && electron .",
+    "dev": "electron .",
+    "dist": "node scripts/build-app.js && electron-builder --win --publish never",
+    "dist:dir": "node scripts/build-app.js && electron-builder --win --dir --publish never",
+    "icon": "node scripts/make-icon.js",
+    "release": "node scripts/build-app.js && electron-builder --win --publish always"
+  },
+  "devDependencies": {
+    "electron": "^45.5.0",
+    "electron-builder": "^26.18.0"
+  },
+  "author": "DB Backup & Restore",
+  "build": {
+    "appId": "com.dbbackup.desktop",
+    "productName": "DB Backup & Restore",
+    "copyright": "DB Backup & Restore",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "main/**",
+      "renderer/**",
+      "build/icon.png",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "app",
+        "to": "app",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "artifactName": "DB-Backup-Restore-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "DB Backup & Restore",
+      "uninstallDisplayName": "DB Backup & Restore",
+      "deleteAppDataOnUninstall": false
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.developer-tools",
+      "icon": "build/icon.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Development",
+      "icon": "build/icon.png"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "akshayghugare",
+        "repo": "db-backup-system-desktop",
+        "releaseType": "release"
+      }
+    ]
+  }
+}

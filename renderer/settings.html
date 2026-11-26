@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:" />
+    <title>Settings — DB Backup &amp; Restore</title>
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="settings.css" />
+  </head>
+  <body>
+    <form id="form" class="page" novalidate autocomplete="off">
+      <header class="head">
+        <span class="brand-mark sm">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" /><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
+          </svg>
+        </span>
+        <div>
+          <p class="eyebrow">Settings</p>
+          <h1><span class="gradient-text">App database</span></h1>
+        </div>
+      </header>
+
+      <p class="intro muted">
+        Where user accounts, approvals and history are stored. <strong>Use the same database as the website</strong> (for example your Aiven
+        database) so the desktop app and the website share the same users and history.
+        This is not the database you back up — you choose those inside the app for every run.
+      </p>
+
+      <section class="panel box">
+        <div class="url-row">
+          <input id="url" class="field" type="text" spellcheck="false" placeholder="Paste postgresql://user:pass@host:port/database?sslmode=require" />
+          <button id="fill" type="button" class="btn">Fill</button>
+        </div>
+        <p id="url-hint" class="hint faint">Optional — fills the fields below.</p>
+
+        <div class="divider"><span>or enter details</span></div>
+
+        <div class="grid host">
+          <label class="lbl"><span class="name">Host <code class="tech">DB_HOST</code></span><input id="host" class="field" spellcheck="false" placeholder="e.g. pg-xxxx.aivencloud.com" /></label>
+          <label class="lbl"><span class="name">Port <code class="tech">DB_PORT</code></span><input id="port" class="field" type="number" min="1" max="65535" placeholder="5432" /></label>
+        </div>
+        <label class="lbl"><span class="name">Database name <code class="tech">DB_NAME</code></span><input id="name" class="field" spellcheck="false" placeholder="e.g. db-backup-first" /></label>
+        <div class="grid two">
+          <label class="lbl"><span class="name">User name <code class="tech">DB_USER</code></span><input id="user" class="field" spellcheck="false" placeholder="e.g. avnadmin" /></label>
+          <label class="lbl">
+            <span class="name">Password <code class="tech">DB_PASSWORD</code></span>
+            <span class="pw"><input id="password" class="field" type="password" placeholder="Empty if none" /><button id="reveal" type="button" class="reveal" aria-label="Show password">Show</button></span>
+          </label>
+        </div>
+        <div class="switch-row">
+          <span><strong>Use SSL</strong> <code class="tech">DB_SSL</code><span class="hint faint">On for managed / cloud databases such as Aiven.</span></span>
+          <button id="ssl" type="button" class="toggle" role="switch" aria-checked="true"><span class="track"><span class="thumb"></span></span><span class="state">On</span></button>
+        </div>
+      </section>
+
+      <section class="panel box">
+        <div class="switch-row">
+          <span><strong>Allow new accounts</strong> <code class="tech">ALLOW_REGISTRATION</code><span class="hint faint">Let people create accounts from this app (an admin still approves them).</span></span>
+          <button id="registration" type="button" class="toggle" role="switch" aria-checked="true"><span class="track"><span class="thumb"></span></span><span class="state">On</span></button>
+        </div>
+        <div class="switch-row">
+          <span><strong>Local PostgreSQL runs in Docker</strong> <code class="tech">ALLOW_DOCKER_LOCAL_DB</code><span class="hint faint">Only if your local database is a Docker container on this computer.</span></span>
+          <button id="docker" type="button" class="toggle" role="switch" aria-checked="false"><span class="track"><span class="thumb"></span></span><span class="state">Off</span></button>
+        </div>
+      </section>
+
+      <div id="result" class="result"></div>
+
+      <footer class="foot">
+        <span id="meta" class="faint"></span>
+        <span class="buttons">
+          <button id="test" type="button" class="btn">Test connection</button>
+          <button id="cancel" type="button" class="btn">Cancel</button>
+          <button id="save" type="submit" class="btn btn-primary">Save &amp; start</button>
+        </span>
+      </footer>
+    </form>
+    <script src="settings.js"></script>
+  </body>
+</html>

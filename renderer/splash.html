@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:" />
+    <title>DB Backup &amp; Restore</title>
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="splash.css" />
+  </head>
+  <body>
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+
+    <main class="wrap">
+      <section class="panel card">
+        <div class="loader" id="loader">
+          <span class="ring base"></span>
+          <span class="ring outer"></span>
+          <span class="ring inner"></span>
+          <span class="brand-mark">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <ellipse cx="12" cy="5" rx="8" ry="3" />
+              <path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5" />
+              <path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
+            </svg>
+          </span>
+        </div>
+
+        <p class="eyebrow">Desktop app</p>
+        <h1><span class="gradient-text">DB Backup &amp; Restore</span></h1>
+
+        <h2 id="title">Starting</h2>
+        <p id="message" class="muted">Starting the local backend…</p>
+        <span class="dots" id="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+
+        <ol class="steps" id="steps">
+          <li data-step="0"><span class="dot"></span>Start local backend</li>
+          <li data-step="1"><span class="dot"></span>Connect app database</li>
+          <li data-step="2"><span class="dot"></span>Open the app</li>
+        </ol>
+
+        <pre id="detail" class="detail" hidden></pre>
+
+        <div class="actions" id="actions"></div>
+      </section>
+      <p class="footnote faint">Runs on this computer — restores into <code>localhost</code> work here.</p>
+    </main>
+
+    <script src="splash.js"></script>
+  </body>
+</html>

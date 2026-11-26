@@ -1,0 +1,13 @@
+{
+  "db": {
+    "host": "pg-xxxxxxxx.aivencloud.com",
+    "port": 23608,
+    "user": "avnadmin",
+    "password": "",
+    "name": "db-backup-first",
+    "ssl": true
+  },
+  "allowRegistration": true,
+  "allowDockerLocalDb": false,
+  "jwtExpiresIn": "8h"
+}
